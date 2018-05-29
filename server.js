@@ -18,10 +18,17 @@ db.once('open', function () {
 });
 
 //模型
-const todos = mongoose.model('todos', {
+const todosSchema = new mongoose.Schema({
     key: Number,
     todo: String
-});
+})
+
+const todos = mongoose.model('todos', todosSchema);
+
+// const todos = mongoose.model('todos', {
+//     key: Number,
+//     todo: String
+// });
 
 //发送json: 数据+数量
 let sendjson = {
@@ -38,6 +45,8 @@ app.all('*', function (req, res, next) {
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
+
+// find create remove count
 
 //api/todos
 app.post('/api/todos', function (req, res) {

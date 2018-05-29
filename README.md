@@ -10,7 +10,7 @@ react + react-router(v4)+mobx+webpack
 
 # 快速开始 #
 
-> git clone git@github.com:zhaoyu69/mobx-demo.git
+> git clone git@github.com:cosyer/mobx-demo.git
 > 
 > npm install
 
