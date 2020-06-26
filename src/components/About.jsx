@@ -29,7 +29,7 @@ for (let i = 0; i < 100; i++) {
     key: i.toString(),
     name: `Edrward ${i}`,
     age: 32,
-    address: `London Park no. ${i}`
+    address: `London Park no. ${i}`,
   });
 }
 const FormItem = Form.Item;
@@ -63,7 +63,7 @@ class EditableCell extends Component {
     } = this.props;
     return (
       <EditableContext.Consumer>
-        {form => {
+        {(form) => {
           const { getFieldDecorator } = form;
           return (
             <td {...restProps}>
@@ -73,10 +73,10 @@ class EditableCell extends Component {
                     rules: [
                       {
                         required: true,
-                        message: `Please Input ${title}!`
-                      }
+                        message: `Please Input ${title}!`,
+                      },
                     ],
-                    initialValue: record[dataIndex]
+                    initialValue: record[dataIndex],
                   })(this.getInput())}
                 </FormItem>
               ) : (
@@ -99,19 +99,19 @@ export default class EditableTable extends Component {
         title: "name",
         dataIndex: "name",
         width: "25%",
-        editable: true
+        editable: true,
       },
       {
         title: "age",
         dataIndex: "age",
         width: "15%",
-        editable: true
+        editable: true,
       },
       {
         title: "address",
         dataIndex: "address",
         width: "40%",
-        editable: true
+        editable: true,
       },
       {
         title: "operation",
@@ -123,7 +123,7 @@ export default class EditableTable extends Component {
               {editable ? (
                 <span>
                   <EditableContext.Consumer>
-                    {form => (
+                    {(form) => (
                       <a
                         href="javascript:;"
                         onClick={() => this.save(form, record.key)}
@@ -145,12 +145,12 @@ export default class EditableTable extends Component {
               )}
             </div>
           );
-        }
-      }
+        },
+      },
     ];
   }
 
-  isEditing = record => {
+  isEditing = (record) => {
     return record.key === this.state.editingKey;
   };
 
@@ -164,12 +164,12 @@ export default class EditableTable extends Component {
         return;
       }
       const newData = [...this.state.data];
-      const index = newData.findIndex(item => key === item.key);
+      const index = newData.findIndex((item) => key === item.key);
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
           ...item,
-          ...row
+          ...row,
         });
         this.setState({ data: newData, editingKey: "" });
       } else {
@@ -187,23 +187,23 @@ export default class EditableTable extends Component {
     const components = {
       body: {
         row: EditableFormRow,
-        cell: EditableCell
-      }
+        cell: EditableCell,
+      },
     };
 
-    const columns = this.columns.map(col => {
+    const columns = this.columns.map((col) => {
       if (!col.editable) {
         return col;
       }
       return {
         ...col,
-        onCell: record => ({
+        onCell: (record) => ({
           record,
           inputType: col.dataIndex === "age" ? "number" : "text",
           dataIndex: col.dataIndex,
           title: col.title,
-          editing: this.isEditing(record)
-        })
+          editing: this.isEditing(record),
+        }),
       };
     });
 
