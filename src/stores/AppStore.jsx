@@ -149,7 +149,8 @@ class AppStore {
   //计算长度
   @computed
   get TodoListCount() {
-    return this.todos.length;
+    return this.todos.length + '个';
   }
 }
+
 export default AppStore;

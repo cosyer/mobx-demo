@@ -46,7 +46,7 @@ export default class TodoList extends Component {
           pagination={false}
           size="middle"
         />
-        <p style={{ marginTop: "15px" }}>{`Total ${store.total} items`}</p>
+        <p style={{ marginTop: "15px" }}>{`Total ${store.TodoListCount} items`}</p>
       </div>
     );
   }
